@@ -42,9 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        todoDB = Room.databaseBuilder(MainActivity.this,
-                TodoDataBase.class, TodoDataBase.DATABASE_NAME)
-                .build();
+        todoDB = TodoDataBase.getInstance(getApplicationContext());
+
         todoDao = todoDB.TodoDao();
         viewModel = ViewModelProviders.of(this).get(TodoViewModel.class);
         viewModel.init(todoDao);
